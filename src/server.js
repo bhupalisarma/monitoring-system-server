@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -21,8 +22,8 @@ const userRoutes = require('../src/routes/userRoutes');
 const classroomRoutes = require('../src/routes/classroomRoutes');
 
 app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/auth/classrooms', classroomRoutes);
+app.use('/api/users',  userRoutes);
+app.use('/api/auth/classrooms',  classroomRoutes);
 
 
 // MongoDB connection

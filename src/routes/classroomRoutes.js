@@ -4,7 +4,7 @@ const { verifyToken } = require('../utils/authUtils');
 const { getAllClassrooms, createClassroom } = require('../controllers/classroomController');
 
 // Get all classrooms
-router.get('/', getAllClassrooms);
+router.get('/', verifyToken, getAllClassrooms);
 
 // Create a classroom (requires authentication)
 router.post('/', verifyToken, createClassroom);

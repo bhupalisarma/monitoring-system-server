@@ -2,15 +2,17 @@
 
 const Classroom = require('../models/Classroom');
 
-// Get all classrooms
+// Get all classrooms created by the logged-in mentor
 const getAllClassrooms = async (req, res) => {
     try {
-        const classrooms = await Classroom.find();
+        const mentorId = req.user._id;
+        const classrooms = await Classroom.find({ mentor: mentorId });
         res.json(classrooms);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch classrooms' });
     }
 };
+
 
 // Create a classroom
 const createClassroom = async (req, res) => {
