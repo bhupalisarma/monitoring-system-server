@@ -5,13 +5,23 @@ const Classroom = require('../models/Classroom');
 // Get all classrooms created by the logged-in mentor
 const getAllClassrooms = async (req, res) => {
     try {
-        const mentorId = req.user._id;
-        const classrooms = await Classroom.find({ mentor: mentorId });
-        res.json(classrooms);
+        const isUserAdmin = req.user.role === 'admin'; 
+
+        if (isUserAdmin) {
+            // Fetch all classrooms without filtering for admin users
+            const classrooms = await Classroom.find();
+            res.json(classrooms);
+        } else {
+            // Fetch classrooms created by the logged-in mentor
+            const mentorId = req.user._id;
+            const classrooms = await Classroom.find({ mentor: mentorId });
+            res.json(classrooms);
+        }
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch classrooms' });
     }
 };
+
 
 
 // Create a classroom
