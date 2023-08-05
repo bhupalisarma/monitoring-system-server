@@ -22,7 +22,20 @@ const getAllClassrooms = async (req, res) => {
     }
 };
 
-
+// Get classroom by ID
+const getClassroomById = async (req, res) => {
+    try {
+        const classroomId = req.classroom._id;
+        const classroom = await Classroom.find( classroomId );
+        if (!classroom) {
+            return res.status(404).json({ error: 'Classroom not found' });
+        }
+        res.json(classroom);
+    } catch (error) {
+        console.error('Error fetching classroom details:', error);
+        res.status(500).json({ error: 'Failed to fetch classroom details' });
+    }
+};
 
 // Create a classroom
 const createClassroom = async (req, res) => {
@@ -45,7 +58,9 @@ const createClassroom = async (req, res) => {
     }
 };
 
+
 module.exports = {
     getAllClassrooms,
     createClassroom,
+    getClassroomById
 };
