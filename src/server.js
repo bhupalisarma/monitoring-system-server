@@ -23,7 +23,7 @@ const classroomRoutes = require('../src/routes/classroomRoutes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users',  userRoutes);
-app.use('/api/auth/classrooms',  classroomRoutes);
+app.use('/api/classrooms',  classroomRoutes);
 
 
 // MongoDB connection

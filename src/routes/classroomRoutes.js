@@ -10,7 +10,7 @@ router.get('/', verifyToken, getAllClassrooms);
 router.post('/', verifyToken, createClassroom);
 
 // Get classroom by ID
-router.get('/:classroomId', verifyToken, getClassroomById);
+router.get('/:classroomId',  getClassroomById);
 
 
 module.exports = router;

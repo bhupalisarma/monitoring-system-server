@@ -25,8 +25,8 @@ const getAllClassrooms = async (req, res) => {
 // Get classroom by ID
 const getClassroomById = async (req, res) => {
     try {
-        const classroomId = req.classroom._id;
-        const classroom = await Classroom.find( classroomId );
+        const classroomId = req.params.classroomId;
+        const classroom = await Classroom.findById( classroomId );
         if (!classroom) {
             return res.status(404).json({ error: 'Classroom not found' });
         }
